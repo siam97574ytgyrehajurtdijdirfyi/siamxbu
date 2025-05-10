@@ -1,87 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Payout Pending Processor</title>
-  <style>
-    .transactions-item {
-      margin: 10px 0;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    .transactions-item__amount.red {
-      color: red;
-      font-weight: bold;
-    }
-    .transactions-item__status-icon.muted svg {
-      width: 14px;
-      height: 14px;
-      fill: gray;
-    }
-    .transactions-item__status-processed {
-      margin-bottom: 6px;
-      font-style: italic;
-      color: #555;
-    }
-  </style>
-</head>
-<body>
-  <h2>Withdrawal Status Form</h2>
-  <form id="payoutForm">
-    <label>Position (1, 2, 3): <input type="number" id="position" required></label><br><br>
-    <label>Transaction ID: <input type="text" id="trans_id" required></label><br><br>
-    <label>Date (DD.MM.YY): <input type="text" id="date" required></label><br><br>
-    <label>Time (HH:MM:SS): <input type="text" id="time" required></label><br><br>
-    <label>Transaction Method: <input type="text" id="trans_method" required></label><br><br>
-    <label>Amount: <input type="number" id="amount" required></label><br><br>
-    <button type="submit">Submit</button>
-  </form>
+// Script Coded By @jisanx<< -- Telegram
+// Script Coded By @jisanx << -- Telegram
+// Script Coded By @jisanx << -- Telegram
+//Enter value
+let position = 1;
+let trans_id = "18696532";
+let date = "13.06.24";
+let time = "06:30:10";
+let trans_method = "Binance Pay";
+let amount =100;
+//stop
 
-  <h3>Transactions</h3>
-  <div class="transactions-item"></div>
-  <div class="transactions-item"></div>
-  <div class="transactions-item"></div>
+//codes
 
-  <script>
-    document.getElementById("payoutForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+let message =` The withdrawal is currently being processed on the side of the financial operator. Please wait - the funds should be received within 48 hours.` 
 
-      let position = parseInt(document.getElementById("position").value) - 1;
-      let trans_id = document.getElementById("trans_id").value;
-      let date = document.getElementById("date").value;
-      let time = document.getElementById("time").value;
-      let trans_method = document.getElementById("trans_method").value;
-      let amount = parseFloat(document.getElementById("amount").value);
-
-      let message = `The withdrawal is currently being processed on the side of the financial operator. Please wait - the funds should be received within 48 hours.`;
-
-      const html = 
-        '<div class="transactions-item__id">' + trans_id + '</div>' +
-        '<div class="transactions-item__date">' + date + " " + time + '</div>' +
-        '<div class="transactions-item__status">' +
-          '<div class="transactions-item__status-processed">' + message + '</div>' +
-          '<div class="transactions-item__status-block">' +
-            '<div class="transactions-item__status-icon muted">' +
-              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">' +
-              '<circle cx="8" cy="8" r="7" stroke="gray" stroke-width="2" fill="none"/>' +
-              '<path d="M8 4v4l3 2" stroke="gray" stroke-width="2" fill="none"/>' +
-              '</svg>' +
-            '</div>' +
-            '<span class="transactions-item__status-text pending">waiting confirmation</span>' +
-          '</div>' +
-        '</div>' +
-        '<div class="transactions-item__type">Payout</div>' +
-        '<div class="transactions-item__method">' + trans_method + '</div>' +
-        '<b class="transactions-item__amount red">-' + amount.toFixed(2) + '$</b>';
-
-      const items = document.getElementsByClassName("transactions-item");
-      if (items[position]) {
-        items[position].innerHTML = html;
-      } else {
-        alert("Invalid position. Please use a number between 1 and " + items.length);
-      }
-    });
-  </script>
-</body>
-</html>
+position = position - 1;
+document.getElementsByClassName("transactions-item")[position].innerHTML =
+  '<div class="transactions-item__id">' +
+  trans_id +
+  '</div><div class="transactions-item__date">' +
+  date +
+  " " +
+  time +
+  '</div><div class="transactions-item__status"><div class="transactions-item__status-processed">' +message + '</div><div class="transactions-item__status-block"><div class="transactions-item__status-icon muted"><svg class="icon-pending"><use xlink:href="/profile/images/spritemap.svg#icon-pending"></use></svg></div><span class="transactions-item__status-text pending">waiting confirmation</span></div></div><div class="transactions-item__type">Payout</div><div class="transactions-item__method">' + trans_method + '</div><b class="transactions-item__amount red">-' + amount + ".00$</b>";
